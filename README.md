@@ -1,16 +1,63 @@
-# React + Vite
+# 👋 Asjad Naveed - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal portfolio website.
 
-Currently, two official plugins are available:
+This portfolio showcases my experience as a **Laravel Full Stack Developer**, highlighting my projects, technical skills, work experience, and case studies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Website
 
-## React Compiler
+Coming Soon:
+https://asjadnaveed.com
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 👨‍💻 About Me
 
-## Expanding the ESLint configuration
+I'm Asjad Naveed, a Laravel Full Stack Developer with professional experience building CRM systems, SaaS applications, REST APIs, booking systems, and business management platforms.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+I enjoy solving complex backend problems while creating clean and responsive user interfaces.
+
+## 💻 Tech Stack
+
+### Backend
+- Laravel
+- PHP
+- MySQL
+- REST APIs
+
+### Frontend
+- React
+- Vue.js
+- JavaScript
+- TypeScript
+- Tailwind CSS
+- Bootstrap
+
+### Tools
+- Git & GitHub
+- Composer
+- NPM
+- Vite
+- VS Code
+
+## 📂 Featured Projects
+
+- Laravel Doctor Appointment System
+- Laravel WebSockets
+- CRM Modules
+- Booking System
+- Custom Laravel Packages
+
+## 📄 Resume
+
+Available on the portfolio website.
+
+## 📬 Contact
+
+- LinkedIn:
+  https://www.linkedin.com/in/asjad-naveed-702a39178
+
+- GitHub:
+  https://github.com/Asjadgit
+
+---
+
+Thank you for visiting!
