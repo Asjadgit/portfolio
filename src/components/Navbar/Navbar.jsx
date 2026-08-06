@@ -1,31 +1,51 @@
-import './Navbar.css'
+import { useState } from "react";
+import { FiDownload, FiMenu, FiX } from "react-icons/fi";
+import "./Navbar.css";
+
+const links = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
 
 const Navbar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
-        <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/80  border-b border-gray-200">
-            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-                    <h2 className="text-2xl font-bold tracking-wide cursor-pointer">
-                        AN.
-                    </h2>
+        <nav className="site-nav">
+            <div className="nav-shell">
+                <a className="nav-logo" href="#home" aria-label="Asjad Naveed home">
+                    AN<span>.</span>
+                </a>
 
+                <button
+                    type="button"
+                    className="nav-menu-button"
+                    onClick={() => setMenuOpen((open) => !open)}
+                    aria-expanded={menuOpen}
+                    aria-label="Toggle navigation"
+                >
+                    {menuOpen ? <FiX /> : <FiMenu />}
+                </button>
 
-                    <ul className="flex items-center gap-8 text-gray-700 font-medium">
-                        <li className="cursor-pointer hover:text-black transition-all duration-300">Home</li>
-                        <li className="cursor-pointer hover:text-black transition-all duration-300">About</li>
-                        <li className="cursor-pointer hover:text-black transition-all duration-300">Skills</li>
-                        <li className="cursor-pointer hover:text-black transition-all duration-300">Projects</li>
-                        <li className="cursor-pointer hover:text-black transition-all duration-300">Experience</li>
-                        <li className="cursor-pointer hover:text-black transition-all duration-300">Contact</li>
+                <div className={`nav-content ${menuOpen ? "is-open" : ""}`}>
+                    <ul className="nav-links">
+                        {links.map((link, index) => (
+                            <li key={link}>
+                                <a
+                                    className={index === 0 ? "active" : ""}
+                                    href={`#${link.toLowerCase()}`}
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {link}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
 
-                    <button className="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-md">
-                        Resume
-                    </button>
+                    <a className="nav-resume" href="/resume.pdf" download>
+                        Resume <FiDownload aria-hidden="true" />
+                    </a>
+                </div>
             </div>
-
-            
         </nav>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

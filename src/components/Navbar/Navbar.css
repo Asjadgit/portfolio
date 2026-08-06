@@ -1,0 +1,25 @@
+.site-nav {
+    position: fixed;
+    z-index: 50;
+    inset: 0 0 auto;
+    height: 90px;
+    border-bottom: 1px solid #e6e7ec;
+    background: rgba(255, 255, 255, .9);
+    box-shadow: 0 6px 22px rgba(77, 47, 142, .07);
+    backdrop-filter: blur(18px);
+}
+.nav-shell { display: flex; align-items: center; justify-content: space-between; width: min(1440px, calc(100% - 96px)); height: 100%; margin: 0 auto; }
+.nav-logo { color: #090d16; font-size: 38px; line-height: 1; font-weight: 850; letter-spacing: -2px; text-decoration: none; }.nav-logo span { color: #6728db; }
+.nav-content { display: flex; align-items: center; flex: 1; justify-content: flex-end; }
+.nav-links { display: flex; align-items: center; gap: clamp(30px, 4vw, 63px); margin: 0 clamp(45px, 10vw, 180px) 0 0; padding: 0; list-style: none; }
+.nav-links a { position: relative; color: #0f121a; font-size: 16px; font-weight: 500; text-decoration: none; transition: color .2s ease; }
+.nav-links a:hover, .nav-links a.active { color: #6125dc; }.nav-links a.active::after { content: ""; position: absolute; left: 50%; bottom: -21px; width: 7px; height: 7px; border-radius: 50%; background: #6728db; transform: translateX(-50%); }
+.nav-resume { display: inline-flex; align-items: center; gap: 15px; min-height: 52px; padding: 0 23px; color: white; border-radius: 11px; background: #070c14; box-shadow: 0 9px 18px rgba(10, 13, 21, .16); font-weight: 600; text-decoration: none; }
+.nav-menu-button { display: none; padding: 7px; color: #121620; border: 0; background: transparent; font-size: 29px; }
+
+@media (max-width: 1100px) { .nav-shell { width: min(100% - 52px, 1140px); }.nav-links { gap: 28px; margin-right: 40px; } }
+@media (max-width: 820px) {
+    .site-nav { height: 76px; }.nav-shell { width: calc(100% - 34px); }.nav-logo { font-size: 32px; }.nav-menu-button { display: grid; }
+    .nav-content { position: absolute; left: 17px; right: 17px; top: 68px; display: none; padding: 22px; border: 1px solid #e5e1ed; border-radius: 16px; background: rgba(255,255,255,.98); box-shadow: 0 18px 45px rgba(34,24,60,.16); }.nav-content.is-open { display: block; }
+    .nav-links { display: grid; gap: 0; margin: 0 0 14px; }.nav-links a { display: block; padding: 11px 5px; }.nav-links a.active::after { display: none; }.nav-resume { width: 100%; justify-content: center; }
+}

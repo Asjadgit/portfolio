@@ -1,61 +1,91 @@
-import profile from "../assets/images/profile/image.png";
+import profileImage from "../assets/images/profile/profile.png";
+import TechBadge from "./TechBadge ";
+import laravel from "../assets/icons/laravel.svg";
+import react from "../assets/icons/react.svg";
+import vue from "../assets/icons/vue.svg";
+import git from "../assets/icons/git.svg";
+import mysql from "../assets/icons/mysql.svg";
+import {
+    FiArrowUpRight,
+    FiBriefcase,
+    FiCode,
+    FiDownload,
+    FiUsers,
+} from "react-icons/fi";
+import { FaPhp } from "react-icons/fa";
+
+const stats = [
+    { value: "2+", label: "Years Experience", Icon: FiBriefcase },
+    { value: "25+", label: "Projects Completed", Icon: FiCode },
+    { value: "15+", label: "Happy Clients", Icon: FiUsers },
+];
 
 const Hero = () => {
+    const scrollToContact = () => {
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    };
+
     return (
-        <section className="min-h-screen flex items-center">
-            <div className="max-w-7xl mx-auto px-8 w-full">
+        <section id="home" className="hero-section">
+            <div className="hero-dot-field hero-dot-field-left" aria-hidden="true" />
+            <div className="hero-dot-field hero-dot-field-right" aria-hidden="true" />
 
-                <div className="grid grid-cols-2 gap-16 items-center">
+            <div className="hero-shell">
+                <div className="hero-copy">
+                    <div className="hero-intro"><span aria-hidden="true">👋</span> Hi, I&apos;m</div>
 
-                    {/* Left Side */}
-                    <div>
+                    <h1>Asjad Naveed</h1>
 
-                        <p className="text-lg text-gray-500 mb-4">
-                            👋 Hi, I'm
-                        </p>
+                    <h2>
+                        <span>Full Stack</span>{" "}
+                        <span className="hero-role">
+                            Laravel Developer
+                            <svg viewBox="0 0 320 18" aria-hidden="true">
+                                <path d="M6 13C88 3 229 2 314 10" />
+                            </svg>
+                        </span>
+                    </h2>
 
-                        <h1 className="text-6xl font-bold mb-4">
-                            Asjad Naveed
-                        </h1>
+                    <p className="hero-description">
+                        I design and develop scalable SaaS platforms, enterprise CRM systems, REST APIs and modern web applications using Laravel, React, Vue.js, Python and MySQL, with a strong focus on clean architecture, performance and user experience.
+                    </p>
 
-                        <h2 className="text-3xl text-gray-700 mb-6">
-                            Full Stack Laravel Developer
-                        </h2>
-
-                        <p className="text-lg text-gray-600 leading-8 mb-8">
-                            I build scalable CRM systems, SaaS applications,
-                            REST APIs, and modern web experiences using
-                            Laravel, React, Vue.js and MySQL.
-                        </p>
-
-                        <div className="flex gap-4">
-
-                            <button className="bg-black text-white px-8 py-4 rounded-xl">
-                                Hire Me
-                            </button>
-
-                            <button className="border border-black px-8 py-4 rounded-xl">
-                                Download Resume
-                            </button>
-
-                        </div>
-
+                    <div className="hero-actions">
+                        <button type="button" className="hero-primary-button" onClick={scrollToContact}>
+                            Hire Me <FiArrowUpRight aria-hidden="true" />
+                        </button>
+                        <a className="hero-secondary-button" href="/resume.pdf" download>
+                            Download Resume <FiDownload aria-hidden="true" />
+                        </a>
                     </div>
 
-                    {/* Right Side */}
-
-                    <div className="flex justify-center">
-
-                        <img
-                            src={profile}
-                            alt="Asjad Naveed"
-                            className="`w-[420px]` rounded-3xl"
-                        />
-
+                    <div className="hero-badges" aria-label="Technology stack">
+                        <TechBadge icon={laravel} name="Laravel" />
+                        <TechBadge icon={react} name="React" />
+                        <TechBadge icon={vue} name="Vue.js" />
+                        <TechBadge customIcon={<FaPhp />} name="PHP" />
+                        <TechBadge icon={mysql} name="MySQL" />
+                        <TechBadge icon={git} name="Git" />
                     </div>
 
+                    <div className="hero-stats">
+                        {stats.map(({ value, label, Icon }) => (
+                            <div className="hero-stat" key={label}>
+                                <span className="hero-stat-icon"><Icon aria-hidden="true" /></span>
+                                <span>
+                                    <strong>{value}</strong>
+                                    <small>{label}</small>
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
+                <div className="hero-visual" aria-label="Portrait of Asjad Naveed">
+                    <div className="hero-visual-glow" aria-hidden="true" />
+                    <div className="hero-center-panel" aria-hidden="true" />
+                    <img src={profileImage} alt="Asjad Naveed" className="hero-portrait" />
+                </div>
             </div>
         </section>
     );
