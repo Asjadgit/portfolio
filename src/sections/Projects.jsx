@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     FiArrowRight,
     FiBox,
@@ -43,6 +43,55 @@ function FiLinkIcon(props) {
     return <FiGlobe {...props} />;
 }
 
+const useCaseNavigation = (items) => {
+    const contentRef = useRef(null);
+    const [activeId, setActiveId] = useState(items[0][0]);
+
+    useEffect(() => {
+        const container = contentRef.current;
+        if (!container) return undefined;
+
+        let animationFrame;
+        const updateActiveSection = () => {
+            const marker = container.getBoundingClientRect().top + Math.min(container.clientHeight * 0.28, 180);
+            let current = items[0][0];
+
+            items.forEach(([id]) => {
+                const section = container.querySelector(`#${id}`);
+                if (section && section.getBoundingClientRect().top <= marker) current = id;
+            });
+
+            if (container.scrollTop + container.clientHeight >= container.scrollHeight - 4) {
+                current = items.at(-1)[0];
+            }
+
+            setActiveId(current);
+        };
+
+        const scheduleUpdate = () => {
+            cancelAnimationFrame(animationFrame);
+            animationFrame = requestAnimationFrame(updateActiveSection);
+        };
+
+        animationFrame = requestAnimationFrame(updateActiveSection);
+        container.addEventListener("scroll", scheduleUpdate, { passive: true });
+        window.addEventListener("resize", scheduleUpdate);
+
+        return () => {
+            cancelAnimationFrame(animationFrame);
+            container.removeEventListener("scroll", scheduleUpdate);
+            window.removeEventListener("resize", scheduleUpdate);
+        };
+    }, [items]);
+
+    const goToSection = (id) => {
+        setActiveId(id);
+        contentRef.current?.querySelector(`#${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    return { activeId, contentRef, goToSection };
+};
+
 const stack = [
     { name: "Laravel", image: laravel },
     { name: "PHP", Icon: FaPhp },
@@ -58,6 +107,8 @@ const letskyStack = [
 ];
 
 const CaseStudyModal = ({ onClose }) => {
+    const { activeId, contentRef, goToSection } = useCaseNavigation(caseNav);
+
     useEffect(() => {
         const previousOverflow = document.body.style.overflow;
         const closeOnEscape = (event) => event.key === "Escape" && onClose();
@@ -69,8 +120,6 @@ const CaseStudyModal = ({ onClose }) => {
         };
     }, [onClose]);
 
-    const goToSection = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-
     return (
         <div className="case-overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
             <div className="case-modal" role="dialog" aria-modal="true" aria-labelledby="case-study-title">
@@ -79,8 +128,8 @@ const CaseStudyModal = ({ onClose }) => {
                 <aside className="case-sidebar">
                     <div className="case-sidebar-title"><strong>RazorMail CRM</strong><span>Case Study</span></div>
                     <nav aria-label="Case study sections">
-                        {caseNav.map(([id, label, Icon], index) => (
-                            <button type="button" className={index === 0 ? "active" : ""} onClick={() => goToSection(id)} key={id}>
+                        {caseNav.map(([id, label, Icon]) => (
+                            <button type="button" className={activeId === id ? "active" : ""} onClick={() => goToSection(id)} key={id}>
                                 <span><Icon aria-hidden="true" /></span>{label}
                             </button>
                         ))}
@@ -88,7 +137,7 @@ const CaseStudyModal = ({ onClose }) => {
                     <a href="https://razormail.com/" target="_blank" rel="noreferrer">Visit Live Site <FiExternalLink /></a>
                 </aside>
 
-                <div className="case-content">
+                <div className="case-content" ref={contentRef}>
                     <section id="case-overview" className="case-block case-intro">
                         <span className="case-kicker">SaaS / CRM</span>
                         <h2 id="case-study-title">RazorMail CRM</h2>
@@ -187,6 +236,8 @@ const letskyNav = [
 ];
 
 const LetSkyCaseStudyModal = ({ onClose }) => {
+    const { activeId, contentRef, goToSection } = useCaseNavigation(letskyNav);
+
     useEffect(() => {
         const previousOverflow = document.body.style.overflow;
         const closeOnEscape = (event) => event.key === "Escape" && onClose();
@@ -198,8 +249,6 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
         };
     }, [onClose]);
 
-    const goToSection = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-
     return (
         <div className="case-overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
             <div className="case-modal" role="dialog" aria-modal="true" aria-labelledby="letsky-case-title">
@@ -208,8 +257,8 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
                 <aside className="case-sidebar">
                     <div className="case-sidebar-title"><strong>LetSky Tourism</strong><span>Case Study</span></div>
                     <nav aria-label="LetSky case study sections">
-                        {letskyNav.map(([id, label, Icon], index) => (
-                            <button type="button" className={index === 0 ? "active" : ""} onClick={() => goToSection(id)} key={id}>
+                        {letskyNav.map(([id, label, Icon]) => (
+                            <button type="button" className={activeId === id ? "active" : ""} onClick={() => goToSection(id)} key={id}>
                                 <span><Icon aria-hidden="true" /></span>{label}
                             </button>
                         ))}
@@ -217,7 +266,7 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
                     <a href="https://letskytourism.com/" target="_blank" rel="noreferrer">Visit Live Site <FiExternalLink /></a>
                 </aside>
 
-                <div className="case-content">
+                <div className="case-content" ref={contentRef}>
                     <section id="letsky-overview" className="case-block case-intro">
                         <span className="case-kicker">Travel / Visa Operations</span>
                         <h2 id="letsky-case-title">LetSky Tourism</h2>

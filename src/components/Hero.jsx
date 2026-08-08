@@ -21,10 +21,6 @@ const stats = [
 ];
 
 const Hero = () => {
-    const scrollToContact = () => {
-        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-    };
-
     return (
         <section id="home" className="hero-section">
             <div className="hero-dot-field hero-dot-field-left" aria-hidden="true" />
@@ -51,9 +47,14 @@ const Hero = () => {
                     </p>
 
                     <div className="hero-actions">
-                        <button type="button" className="hero-primary-button" onClick={scrollToContact}>
-                            Hire Me <FiArrowUpRight aria-hidden="true" />
-                        </button>
+                        <a
+                            className="hero-primary-button"
+                            href="https://www.fiverr.com/asjad_naveed/create-a-custom-website-for-your-business"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Hire Me on Fiverr <FiArrowUpRight aria-hidden="true" />
+                        </a>
                         <a className="hero-secondary-button" href="/resume.pdf" download>
                             Download Resume <FiDownload aria-hidden="true" />
                         </a>
