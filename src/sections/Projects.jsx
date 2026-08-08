@@ -92,10 +92,10 @@ const CaseStudyModal = ({ onClose }) => {
                     <section id="case-overview" className="case-block case-intro">
                         <span className="case-kicker">SaaS / CRM</span>
                         <h2 id="case-study-title">RazorMail CRM</h2>
-                        <p className="case-lead">Transforming a single-tenant open-source CRM into a production-ready multi-tenant SaaS platform.</p>
+                        <p className="case-lead font-semibold">Transforming a single-tenant open-source CRM into a production-ready multi-tenant SaaS platform.</p>
                         <img className="case-hero-image" src={projectImage} alt="RazorMail CRM product management dashboard" />
                         <h3><span>01.</span> Overview</h3>
-                        <p>The client shared the open-source Krayin CRM codebase and asked our team to turn it into a multi-tenant platform where every customer would have an isolated database and a dedicated subdomain.</p>
+                        <p className="font-semibold">The client shared the open-source Krayin CRM codebase and asked our team to turn it into a multi-tenant platform where every customer would have an isolated database and a dedicated subdomain.</p>
                         <div className="case-meta-grid">
                             <div><FiUser /><span><small>Role</small><strong>Full Stack Laravel Developer</strong></span></div>
                             <div><FiGitBranch /><span><small>Core Conversion</small><strong>Approximately 1 Month</strong></span></div>
@@ -106,7 +106,7 @@ const CaseStudyModal = ({ onClose }) => {
                     <section id="case-challenge" className="case-block">
                         <h3><span>02.</span> The Challenge</h3>
                         <div className="case-split">
-                            <ul className="case-check-list">
+                            <ul className="case-check-list font-semibold">
                                 <li><FiCheck />Krayin was designed around a single application database.</li>
                                 <li><FiCheck />Every tenant required a separate subdomain and isolated database.</li>
                                 <li><FiCheck />Cloudways supported the primary application database but not the required tenant-database architecture.</li>
@@ -121,7 +121,7 @@ const CaseStudyModal = ({ onClose }) => {
 
                     <section id="case-approach" className="case-block">
                         <h3><span>03.</span> My Approach</h3>
-                        <div className="case-approach-grid">
+                        <div className="case-approach-grid font-semibold">
                             <article><FiCode /><h4>Code Study</h4><p>Studied Krayin&apos;s structure, service layer and database assumptions before changing its tenancy model.</p></article>
                             <article><FiLayers /><h4>Multi-Tenancy</h4><p>Redesigned the application so each subdomain resolves to its own isolated tenant database.</p></article>
                             <article><FiGitBranch /><h4>Dynamic Middleware</h4><p>Created middleware that identifies the tenant and switches the active database connection at runtime.</p></article>
@@ -131,7 +131,7 @@ const CaseStudyModal = ({ onClose }) => {
 
                     <section id="case-architecture" className="case-block">
                         <h3><span>04.</span> Technical Architecture</h3>
-                        <p>I proposed keeping the central application and main database on Cloudways while hosting isolated tenant databases on DigitalOcean. The middleware resolves the tenant from the subdomain, updates the Laravel database connection configured through <code>config/database.php</code> and environment variables, then routes the request to the correct database.</p>
+                        <p className="font-semibold">I proposed keeping the central application and main database on Cloudways while hosting isolated tenant databases on DigitalOcean. The middleware resolves the tenant from the subdomain, updates the Laravel database connection configured through <code>config/database.php</code> and environment variables, then routes the request to the correct database.</p>
                         <div className="architecture-flow">
                             <div><SiCloudways /><strong>Cloudways</strong><small>Main application & central DB</small></div>
                             <FiArrowRight />
@@ -143,7 +143,7 @@ const CaseStudyModal = ({ onClose }) => {
 
                     <section id="case-integrations" className="case-block">
                         <h3><span>05.</span> Integrations</h3>
-                        <div className="case-integration-grid">
+                        <div className="case-integration-grid font-semibold">
                             <article><FiMessageCircle /><div><h4>Twilio WhatsApp</h4><p>Refactored the purchased WhatsApp package from Meta&apos;s APIs to Twilio while retaining its CRM workflows.</p></div></article>
                             <article><SiWordpress /><div><h4>WPForms Synchronization</h4><p>Designed CRM APIs and a service class used by the website plugin to securely synchronize form definitions and entries.</p></div></article>
                             <article><FiGitBranch /><div><h4>Dynamic Field Mapping</h4><p>Added CRM-side mapping between WPForms fields and lead attributes so each form could target the correct data.</p></div></article>
@@ -154,11 +154,11 @@ const CaseStudyModal = ({ onClose }) => {
                     <section id="case-impact" className="case-block">
                         <h3><span>06.</span> Results / Impact</h3>
                         <div className="case-results">
-                            <div><strong>Isolated</strong><span>database per tenant</span></div>
-                            <div><strong>Dynamic</strong><span>subdomain-based routing</span></div>
-                            <div><strong>Connected</strong><span>Twilio and WPForms workflows</span></div>
+                            <div><strong>Isolated</strong><span className="font-semibold">database per tenant</span></div>
+                            <div><strong>Dynamic</strong><span className="font-semibold">subdomain-based routing</span></div>
+                            <div><strong>Connected</strong><span className="font-semibold">Twilio and WPForms workflows</span></div>
                         </div>
-                        <p>The resulting architecture delivered the tenant isolation the client requested without abandoning their Cloudways application. The solution met the client&apos;s requirements and created a scalable foundation for future CRM tenants and integrations.</p>
+                        <p className="font-semibold">The resulting architecture delivered the tenant isolation the client requested without abandoning their Cloudways application. The solution met the client&apos;s requirements and created a scalable foundation for future CRM tenants and integrations.</p>
                     </section>
 
                     <section id="case-stack" className="case-block case-stack-section">
@@ -221,10 +221,10 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
                     <section id="letsky-overview" className="case-block case-intro">
                         <span className="case-kicker">Travel / Visa Operations</span>
                         <h2 id="letsky-case-title">LetSky Tourism</h2>
-                        <p className="case-lead">A role-based visa operations platform built for clients, agencies, staff and administrators.</p>
+                        <p className="case-lead font-semibold">A role-based visa operations platform built for clients, agencies, staff and administrators.</p>
                         <img className="case-hero-image letsky-case-image" src={letskyImage} alt="LetSky Tourism visa applications dashboard" />
                         <h3><span>01.</span> Overview</h3>
-                        <p>LetSky Tourism is a Dubai-based travel agency that previously relied on another immigration website for its operations. Our team built a dedicated platform where clients, agencies, staff and administrators could work in one system with permissions tailored to their roles.</p>
+                        <p className="font-semibold">LetSky Tourism is a Dubai-based travel agency that previously relied on another immigration website for its operations. Our team built a dedicated platform where clients, agencies, staff and administrators could work in one system with permissions tailored to their roles.</p>
                         <div className="case-meta-grid">
                             <div><FiUser /><span><small>Role</small><strong>Full Stack Laravel Developer</strong></span></div>
                             <div><FiUsers /><span><small>Users</small><strong>Admin, Staff, Agency & Client</strong></span></div>
@@ -235,7 +235,7 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
                     <section id="letsky-challenge" className="case-block">
                         <h3><span>02.</span> The Challenge</h3>
                         <div className="case-split">
-                            <ul className="case-check-list">
+                            <ul className="case-check-list font-semibold">
                                 <li><FiCheck />Each visa application required approximately 10–12 confidential images or PDF documents.</li>
                                 <li><FiCheck />Concurrent submissions from multiple agencies exhausted server resources and caused request timeouts.</li>
                                 <li><FiCheck />A failed request discarded the application process, forcing users to enter everything again.</li>
@@ -250,8 +250,8 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
 
                     <section id="letsky-queues" className="case-block">
                         <h3><span>03.</span> Queue-Based Processing</h3>
-                        <p>I moved the document-processing workflow out of the web request and into Laravel jobs. Application data is saved immediately, each document receives its own database record, and uploads continue asynchronously without keeping the user&apos;s browser request open.</p>
-                        <div className="case-approach-grid letsky-approach-grid">
+                        <p className="font-semibold">I moved the document-processing workflow out of the web request and into Laravel jobs. Application data is saved immediately, each document receives its own database record, and uploads continue asynchronously without keeping the user&apos;s browser request open.</p>
+                        <div className="case-approach-grid letsky-approach-grid font-semibold">
                             <article><FiFileText /><h4>Persist Application</h4><p>Save the visa application first so a later processing failure never removes the user&apos;s entered data.</p></article>
                             <article><FiDatabase /><h4>Track Documents</h4><p>Create separate database records for every image or PDF and maintain its processing state.</p></article>
                             <article><FiRefreshCw /><h4>Dispatch Jobs</h4><p>Process document uploads in supervised background jobs instead of a single synchronous request.</p></article>
@@ -262,23 +262,23 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
                     <section id="letsky-security" className="case-block">
                         <h3><span>04.</span> Secure Document Storage</h3>
                         <div className="case-integration-grid">
-                            <article><SiDigitalocean /><div><h4>DigitalOcean Spaces</h4><p>Moved confidential visa documents outside the Laravel application, reducing application storage and separating private assets from public files.</p></div></article>
-                            <article><FiLock /><div><h4>Private Objects</h4><p>Documents remain private and cannot be opened through a permanent public URL.</p></div></article>
-                            <article><FiUser /><div><h4>Ownership Authorization</h4><p>The application verifies that the authenticated user is allowed to access the requested document.</p></div></article>
-                            <article><FiClock /><div><h4>Expiring Signed URLs</h4><p>Authorized users receive temporary signed links that expire automatically and are regenerated when needed.</p></div></article>
+                            <article><SiDigitalocean /><div><h4 >DigitalOcean Spaces</h4><p className="font-semibold">Moved confidential visa documents outside the Laravel application, reducing application storage and separating private assets from public files.</p></div></article>
+                            <article><FiLock /><div><h4>Private Objects</h4><p className="font-semibold">Documents remain private and cannot be opened through a permanent public URL.</p></div></article>
+                            <article><FiUser /><div><h4>Ownership Authorization</h4><p className="font-semibold">The application verifies that the authenticated user is allowed to access the requested document.</p></div></article>
+                            <article><FiClock /><div><h4>Expiring Signed URLs</h4><p className="font-semibold">Authorized users receive temporary signed links that expire automatically and are regenerated when needed.</p></div></article>
                         </div>
                     </section>
 
                     <section id="letsky-architecture" className="case-block">
                         <h3><span>05.</span> Technical Architecture</h3>
-                        <div className="architecture-flow letsky-architecture-flow">
+                        <div className="architecture-flow letsky-architecture-flow font-semibold">
                             <div><FiFileText /><strong>Visa Application</strong><small>Save form data immediately</small></div>
                             <FiArrowRight />
                             <div><FiRefreshCw /><strong>Database Queue</strong><small>Persist and supervise upload jobs</small></div>
                             <FiArrowRight />
                             <div><SiDigitalocean /><strong>Private Spaces</strong><small>Store documents securely</small></div>
                         </div>
-                        <p className="case-architecture-note">The user-facing request finishes quickly while workers process documents independently. Queue persistence provides recovery, and signed URLs enforce short-lived, authorized access to every stored file.</p>
+                        <p className="case-architecture-note font-semibold">The user-facing request finishes quickly while workers process documents independently. Queue persistence provides recovery, and signed URLs enforce short-lived, authorized access to every stored file.</p>
                     </section>
 
                     <section id="letsky-impact" className="case-block">
@@ -288,7 +288,7 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
                             <div><strong>Scalable</strong><span>concurrent agency submissions</span></div>
                             <div><strong>Private</strong><span>expiring document access</span></div>
                         </div>
-                        <p>The queue architecture removed the timeout-driven data loss that affected agency users. Applications remain saved even when background processing pauses, server load is controlled, and confidential documents are no longer exposed through the Laravel application&apos;s local storage.</p>
+                        <p className="font-semibold">The queue architecture removed the timeout-driven data loss that affected agency users. Applications remain saved even when background processing pauses, server load is controlled, and confidential documents are no longer exposed through the Laravel application&apos;s local storage.</p>
                     </section>
 
                     <section id="letsky-stack" className="case-block case-stack-section">
