@@ -6,8 +6,7 @@ This portfolio showcases my experience as a **Laravel Full Stack Developer**, hi
 
 ## 🚀 Live Website
 
-Coming Soon:
-https://asjadnaveed.com
+https://www.asjadnaveed.com
 
 ## 👨‍💻 About Me
 
