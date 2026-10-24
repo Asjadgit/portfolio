@@ -14,7 +14,7 @@ const initialForm = {
     email: "",
     subject: "",
     message: "",
-    company: "",
+    contact_trap: "",
 };
 
 const Contact = () => {
@@ -110,8 +110,8 @@ const Contact = () => {
                         </label>
 
                         <label className="contact-honeypot" aria-hidden="true">
-                            Company
-                            <input name="company" value={form.company} onChange={handleChange} tabIndex="-1" autoComplete="off" />
+                            Leave this field empty
+                            <input type="text" name="contact_trap" value={form.contact_trap} onChange={handleChange} tabIndex="-1" autoComplete="new-password" data-lpignore="true" data-1p-ignore />
                         </label>
 
                         <button type="submit" disabled={status.type === "loading"}>

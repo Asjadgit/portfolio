@@ -62,8 +62,11 @@ export default async function handler(request, response) {
         return response.status(429).json({ message: "Too many messages. Please try again later." });
     }
 
-    const { company = "" } = request.body || {};
-    if (company) return response.status(200).json({ message: "Message sent successfully." });
+    const { contact_trap: trap = "" } = request.body || {};
+    if (trap) {
+        console.warn("Contact form honeypot triggered; message discarded.");
+        return response.status(200).json({ message: "Thanks! Your message has been sent successfully." });
+    }
 
     const name = cleanLine(request.body?.name, limits.name);
     const email = clean(request.body?.email, limits.email).toLowerCase();
