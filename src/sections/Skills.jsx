@@ -27,7 +27,7 @@ const groups = [
             { name: "Laravel", image: laravel, value: 95 },
             { name: "PHP", Icon: FaPhp, className: "skill-php", value: 90 },
             { name: "REST APIs", Icon: FiCloudLightning, value: 90 },
-            { name: "JavaScript", Icon: SiJavascript, className: "skill-js", value: 75 },
+            { name: "JavaScript", Icon: SiJavascript, className: "skill-js", value: 80 },
         ],
     },
     {

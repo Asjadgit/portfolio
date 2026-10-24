@@ -92,6 +92,19 @@ const useCaseNavigation = (items) => {
     return { activeId, contentRef, goToSection };
 };
 
+const useModalBehavior = (onClose) => {
+    useEffect(() => {
+        const previousOverflow = document.body.style.overflow;
+        const closeOnEscape = (event) => event.key === "Escape" && onClose();
+        document.body.style.overflow = "hidden";
+        window.addEventListener("keydown", closeOnEscape);
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            window.removeEventListener("keydown", closeOnEscape);
+        };
+    }, [onClose]);
+};
+
 const stack = [
     { name: "Laravel", image: laravel },
     { name: "PHP", Icon: FaPhp },
@@ -109,16 +122,7 @@ const letskyStack = [
 const CaseStudyModal = ({ onClose }) => {
     const { activeId, contentRef, goToSection } = useCaseNavigation(caseNav);
 
-    useEffect(() => {
-        const previousOverflow = document.body.style.overflow;
-        const closeOnEscape = (event) => event.key === "Escape" && onClose();
-        document.body.style.overflow = "hidden";
-        window.addEventListener("keydown", closeOnEscape);
-        return () => {
-            document.body.style.overflow = previousOverflow;
-            window.removeEventListener("keydown", closeOnEscape);
-        };
-    }, [onClose]);
+    useModalBehavior(onClose);
 
     return (
         <div className="case-overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
@@ -238,16 +242,7 @@ const letskyNav = [
 const LetSkyCaseStudyModal = ({ onClose }) => {
     const { activeId, contentRef, goToSection } = useCaseNavigation(letskyNav);
 
-    useEffect(() => {
-        const previousOverflow = document.body.style.overflow;
-        const closeOnEscape = (event) => event.key === "Escape" && onClose();
-        document.body.style.overflow = "hidden";
-        window.addEventListener("keydown", closeOnEscape);
-        return () => {
-            document.body.style.overflow = previousOverflow;
-            window.removeEventListener("keydown", closeOnEscape);
-        };
-    }, [onClose]);
+    useModalBehavior(onClose);
 
     return (
         <div className="case-overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
@@ -353,8 +348,12 @@ const LetSkyCaseStudyModal = ({ onClose }) => {
     );
 };
 
+const filters = ["All Projects", "SaaS / CRM", "Web Applications"];
+
 const Projects = () => {
     const [activeCaseStudy, setActiveCaseStudy] = useState(null);
+    const [activeFilter, setActiveFilter] = useState(filters[0]);
+    const isVisible = (category) => activeFilter === filters[0] || activeFilter === category;
 
     return (
         <section id="projects" className="projects-section">
@@ -368,10 +367,21 @@ const Projects = () => {
                     <p>Production systems where I solved complex architecture, performance,<br /> deployment and integration problems.</p>
                 </header>
 
-                <div className="projects-filters" aria-label="Project categories">
-                    <span className="active">All Projects</span><span>SaaS / CRM</span><span>Web Applications</span>
+                <div className="projects-filters" role="group" aria-label="Project categories">
+                    {filters.map((filter) => (
+                        <button
+                            type="button"
+                            className={activeFilter === filter ? "active" : ""}
+                            aria-pressed={activeFilter === filter}
+                            onClick={() => setActiveFilter(filter)}
+                            key={filter}
+                        >
+                            {filter}
+                        </button>
+                    ))}
                 </div>
 
+                {isVisible("SaaS / CRM") && (
                 <article className="project-card">
                     <div className="project-image-wrap"><img src={projectImage} alt="RazorMail CRM dashboard interface" /></div>
                     <div className="project-summary">
@@ -387,7 +397,9 @@ const Projects = () => {
                         </div>
                     </div>
                 </article>
+                )}
 
+                {isVisible("Web Applications") && (
                 <article className="project-card">
                     <div className="project-image-wrap"><img src={letskyImage} alt="LetSky Tourism visa applications dashboard" /></div>
                     <div className="project-summary">
@@ -403,6 +415,7 @@ const Projects = () => {
                         </div>
                     </div>
                 </article>
+                )}
             </div>
             {activeCaseStudy === "razormail" && <CaseStudyModal onClose={() => setActiveCaseStudy(null)} />}
             {activeCaseStudy === "letsky" && <LetSkyCaseStudyModal onClose={() => setActiveCaseStudy(null)} />}

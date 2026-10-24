@@ -1,5 +1,5 @@
 import profileImage from "../assets/images/profile/profile.png";
-import TechBadge from "./TechBadge ";
+import TechBadge from "./TechBadge";
 import laravel from "../assets/icons/laravel.svg";
 import react from "../assets/icons/react.svg";
 import vue from "../assets/icons/vue.svg";
