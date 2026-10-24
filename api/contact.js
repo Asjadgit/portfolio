@@ -62,11 +62,9 @@ export default async function handler(request, response) {
         return response.status(429).json({ message: "Too many messages. Please try again later." });
     }
 
-    const { contact_trap: trap = "" } = request.body || {};
-    if (trap) {
-        console.warn("Contact form honeypot triggered; message discarded.");
-        return response.status(200).json({ message: "Thanks! Your message has been sent successfully." });
-    }
+    // Autofill extensions can fill the hidden honeypot, so flag the message instead of dropping it.
+    const flagged = Boolean(request.body?.contact_trap);
+    if (flagged) console.warn("Contact form honeypot triggered; message flagged as possible spam.");
 
     const name = cleanLine(request.body?.name, limits.name);
     const email = clean(request.body?.email, limits.email).toLowerCase();
@@ -100,7 +98,7 @@ export default async function handler(request, response) {
             from: `Asjad Naveed Portfolio <${gmailUser}>`,
             to: contactEmail,
             replyTo: { name, address: email },
-            subject: `Portfolio enquiry: ${subject}`,
+            subject: `${flagged ? "[Possible spam] " : ""}Portfolio enquiry: ${subject}`,
             text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`,
             html: `
                 <h2>New portfolio enquiry</h2>
